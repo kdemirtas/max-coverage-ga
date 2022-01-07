@@ -3,6 +3,7 @@
         "n_locations_demand": 28,
         "n_locations_possible_facility": 28,
         "max_coverage_distance": 1,
+        "max_facilities": 8,
         "ga_settings": {
             "population_size": 100,
             "crossover_probability": 0.5,
