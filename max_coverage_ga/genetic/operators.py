@@ -21,4 +21,7 @@ def create_mating_pool(population):
     # Create a mating pool from the current population
     return mating_pool
 
+def next_generation(current_population):
+    return next_population
+
 
