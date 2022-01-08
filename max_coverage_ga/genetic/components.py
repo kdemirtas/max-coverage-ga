@@ -53,6 +53,12 @@ class Chromosome:
         elif create_type == "crossover":
             self.set_origin(origin, "crossover")
 
+        elif create_type == "mutation":
+            self.set_origin("mutation")
+
+        elif create_type == "repair":
+            self.set_origin("repair")
+
     def set_origin(self, origin):
         self.origin = origin
 
@@ -64,6 +70,14 @@ class Chromosome:
         Checks the chromosome for infeasibility and returns True if repair is needed.
         Returns False otherwise.
         """
+        # x feasibility
+        
+
+        # y feasibility
+
+        # z feasibility
+
+        # capacity feasibility
         result = False
 
         return result

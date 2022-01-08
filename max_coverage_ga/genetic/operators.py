@@ -32,6 +32,7 @@ def evaluate(chromosome):
 
     if chromosome.needs_repair():
         # Repair the chromosome if needed
-        pass
+        repair(chromosome)
+        
 
 
