@@ -71,16 +71,5 @@ def _parse_info(file_path, sheet_name="info"):
     return info
 
 
-def test():
-    input_files_dict = {
-        "settings": "settings.json",
-        "distances": "Distance Matrix.xlsx",
-        "locations": "Project Data.xlsx"
-    }
-    model = create_model(input_files_dict)
-
-    print("Done")
-    
-
 if __name__ == "__main__":
     test()
