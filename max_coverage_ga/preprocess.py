@@ -70,11 +70,8 @@ def _parse_info(file_path, sheet_name="info"):
     info = pd.read_excel(file_path, sheet_name=sheet_name,header=None).values.flatten()
     return info
 
- 
 
 def test():
-
-
     input_files_dict = {
         "settings": "settings.json",
         "distances": "Distance Matrix.xlsx",

@@ -29,7 +29,6 @@ class Model:
             self.locations_list.append(loc)
 
 
-
 class Solution:
     def __init__(self):
         pass
