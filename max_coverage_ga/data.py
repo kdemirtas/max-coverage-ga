@@ -5,7 +5,8 @@ class Settings:
         self.MAX_DISTANCE = input_settings["max_coverage_distance"]
         self.MAX_FACILITIES = input_settings["max_facilities"]
         self.POP_SIZE = input_settings["ga_settings"]["population_size"]
-        self.P_MUTATE = input_settings["ga_settings"]["maximum_generations"]
+        self.P_MUTATE = input_settings["ga_settings"]["mutation_probability"]
+        self.MAX_GEN = input_settings["ga_settings"]["maximum_generations"]
 
 
 class Location:

@@ -10,7 +10,7 @@ np.random.seed(7)
 
 def solve(model):
     pop_size = model.settings.POP_SIZE
-
+    max_gen = model.settings.MAX_GEN
     p_mutate = model.settings.P_MUTATE
     status = -1
     
@@ -23,9 +23,20 @@ def solve(model):
 
     pop = Population(initial_pop)
 
+    gen = 0
     terminate = False
     while not terminate:
+        
         pass
+
+        # Check terminating conditions
+        gen = gen + 1
+        if gen > max_gen:
+            status = {
+                "Solve": "Complete",
+                "Termination Reason": "MAX_GEN reached" 
+            }
+            terminate = True
 
     solution = Solution()
     return status, solution

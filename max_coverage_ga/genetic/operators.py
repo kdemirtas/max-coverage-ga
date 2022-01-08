@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def crossover(chromosome1, chromosome2):
     child1 = None
     child2 = None
@@ -15,9 +18,14 @@ def repair(chromosome):
     # Repair chromosome here
     return chromosome
 
-def fitness(chromosome):
-    fitness = None
+def compute_fitness(chromosome):
+    y = chromosome.y
+    a = chromosome.model.locations["demand"]
+    
     # Calculate fitness value of chromosome here
+    fitness = np.sum(a * y)
+    chromosome.set_fitness(fitness)
+
     return fitness
 
 def create_mating_pool(population):
@@ -33,6 +41,8 @@ def evaluate(chromosome):
     if chromosome.needs_repair():
         # Repair the chromosome if needed
         repair(chromosome)
+
+    compute_fitness(chromosome)
         
 
 
