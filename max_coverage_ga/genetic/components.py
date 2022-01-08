@@ -20,23 +20,22 @@ class Chromosome:
         create_type: type of creation. Defaults to random. Other options are 'heuristic', 'top_capacity', 'top_demand'.
         """
         # Parameters
+        self.model = model
         self.N = model.settings.N_LOC_DEMAND
         self.M = model.settings.N_LOC_FACILITY
         self.K = model.settings.MAX_FACILITIES
-        self.fitness = 0.0
 
         # Genetic representation
         self.genotype = np.negative(np.ones(self.M + self.N))
-
-        # Decision variables
-        self.x = np.zeros(self.M)
-        self.z = np.zeros([self.N, self.M])
-        self.y = np.zeros(self.N)
-
-        # Genetic attributes
         self.origin = None
         self.generation = None
         self.facility_indexes = None
+        self.fitness = 0.0
+
+        # Mathematical model decision variables
+        self.x = np.zeros(self.M)
+        self.z = np.zeros([self.N, self.M])
+        self.y = np.zeros(self.N)
 
         if create_type == "default" or create_type == "random":
             # Create chromosome randomly.        
@@ -65,13 +64,16 @@ class Chromosome:
     def set_generation(self, generation):
         self.generation = generation
 
+    def set_fitness(self, fitness):
+        self.fitness = fitness
+
     def needs_repair(self):
         """
         Checks the chromosome for infeasibility and returns True if repair is needed.
         Returns False otherwise.
         """
         # x feasibility
-        
+
 
         # y feasibility
 
@@ -110,7 +112,6 @@ class Population:
         self.population = initial_population
         self.diversity = None
         self.generation = 0
-        self.terminate = False
 
     def next_generation(self):
         pass
