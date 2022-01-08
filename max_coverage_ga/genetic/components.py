@@ -3,8 +3,10 @@ import numpy as np
 
 class Chromosome:
     """
-    Chromosome is a binary numpy array with size equal to the number of possible facility locations.
-    1 at index i means a facility is opened at location i, 0 means otherwise.
+    Chromosome is an M + N sized numeric array, where M is thenumber of potential facilitiy
+    locations and N is the number of demand locations. The first M elements are binary and
+    indicate whether or not a facility is opened at the corresponding index location. The next 
+    N elements are numeric and hold the index of the facility location the demand is being served from.
     """
     def __init__(self, n_loc_faciility, max_facility=0, create_type="default"):
         """
