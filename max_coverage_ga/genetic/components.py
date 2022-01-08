@@ -11,7 +11,7 @@ class Chromosome:
     N elements are numeric and hold the index of the facility location the demand is being served from.
     -1 value indicates that location at that index is not served by any facility.
     """
-    def __init__(self, model, create_type="default"):
+    def __init__(self, model, genotype=None, create_type="default"):
         """
         Creates a chromosome instance with the model data according to the create_type.
         N: number of demand locations
@@ -26,7 +26,7 @@ class Chromosome:
         self.K = model.settings.MAX_FACILITIES
 
         # Genetic representation
-        self.genotype = np.negative(np.ones(self.M + self.N))
+        self.genotype = genotype
         self.origin = None
         self.generation = None
         self.facility_indexes = None
@@ -36,9 +36,13 @@ class Chromosome:
         self.x = np.zeros(self.M)
         self.z = np.zeros([self.N, self.M])
         self.y = np.zeros(self.N)
+        
+        if create_type == "default":
+            pass
 
-        if create_type == "default" or create_type == "random":
-            # Create chromosome randomly.        
+        if create_type == "random":
+            # Create chromosome randomly.      
+            self.genotype = np.negative(np.ones(self.M + self.N))  
             self.facility_indexes = np.random.choice(range(self.M), self.K, replace=False)
             self.genotype[self.facility_indexes] = 1
             self.origin = "default"
@@ -50,16 +54,13 @@ class Chromosome:
                 reachable_indexes = model.locations_list[i].locations_reachable
 
         elif create_type == "crossover":
-            self.set_origin(origin, "crossover")
+            self.origin = "crossover"
 
         elif create_type == "mutation":
-            self.set_origin("mutation")
+            self.origin = "mutation"
 
         elif create_type == "repair":
-            self.set_origin("repair")
-
-    def set_origin(self, origin):
-        self.origin = origin
+            self.origin = "repair"
 
     def set_generation(self, generation):
         self.generation = generation
@@ -77,9 +78,13 @@ class Chromosome:
 
         # y feasibility
 
+
         # z feasibility
 
+
         # capacity feasibility
+
+
         result = False
 
         return result

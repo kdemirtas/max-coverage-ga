@@ -27,7 +27,15 @@ def solve(model):
     terminate = False
     while not terminate:
         
-        pass
+        # Construct mating pool
+
+        # Tournament selection
+
+        # Do crossover
+
+        p = np.random.uniform()
+        if p < p_mutate:
+            mutate(chromosome)
 
         # Check terminating conditions
         gen = gen + 1

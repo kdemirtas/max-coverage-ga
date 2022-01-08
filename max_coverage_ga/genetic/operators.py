@@ -6,12 +6,20 @@ def crossover(chromosome1, chromosome2):
     child2 = None
     # Make crossover here
 
+
     child1.set_origin("crossover")
     child2.set_origin("crossover")
+
+    evaluate(child1)
+    evaluate(child2)
+    
     return child1, child2
 
 def mutate(chromosome):
     # Mutate chromosome here
+
+    evaluate(chromosome)
+    
     return chromosome
 
 def repair(chromosome):
@@ -41,6 +49,7 @@ def evaluate(chromosome):
     if chromosome.needs_repair():
         # Repair the chromosome if needed
         repair(chromosome)
+        decode(chromosome)
 
     compute_fitness(chromosome)
         
