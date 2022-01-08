@@ -23,19 +23,50 @@ def create_model(filename):
     mod = model.Model(settings, locations)
     return mod
 
-def parse_distance_matrix(filename, sheet_name):
+def parse_distances(filename, sheet_name):
     root_dir = os.path.dirname(os.path.dirname(__file__))
     files_dir = os.path.join(root_dir, "files")
     file_path = os.path.join(files_dir, filename)
     distances = pd.read_excel(file_path, sheet_name).values
     return distances
 
+def parse_locations(filename):
+    root_dir = os.path.dirname(os.path.dirname(__file__))
+    files_dir = os.path.join(root_dir, "files")
+    file_path = os.path.join(files_dir, filename)
+    info = _parse_info(file_path)
+    demand = _parse_demand(file_path)
+    capacity = _parse_capacity(file_path)
+    locations = {
+        "info": info,
+        "demand": demand,
+        "capacity": capacity
+    }
+    return locations
+
+def _parse_demand(file_path, sheet_name="demand"):
+    demand = pd.read_excel(file_path, sheet_name=sheet_name).values.flatten()
+    return demand
+
+def _parse_capacity(file_path, sheet_name="capacity"):
+    capacity = pd.read_excel(file_path, sheet_name=sheet_name).values.flatten()
+    return capacity
+
+def _parse_info(file_path, sheet_name="info"):
+    info = pd.read_excel(file_path, sheet_name=sheet_name).values.flatten()
+    return info
+
 def get_coverage_matrix(distances, max_distance):
-    pass
+    coverage = np.where(distances <= max_distance, 1, 0)
+    return coverage 
 
 def test():
-    distances = parse_distance_matrix("Distance Matrix.xlsx", "distances")
+    distances = parse_distances("Distance Matrix.xlsx", "distances")
+    locations = parse_locations("Project Data.xlsx")
+    coverage = get_coverage_matrix(distances, 20)
     print(distances)
+    print(locations)
+    print(coverage)
     print("Done")
     
 
