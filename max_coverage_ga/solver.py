@@ -7,7 +7,6 @@ def solve(model):
     n_loc_demand = model.settings.N_LOC_DEMAND
     n_loc_faciility = model.settings.N_LOC_FACILITY
     max_facility = model.settings.MAX_FACILITIES
-    p_cross = model.settings.P_CROSS
     p_mutate = model.settings.P_MUTATE
     
     # Initialize population 
