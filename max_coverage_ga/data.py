@@ -5,17 +5,18 @@ class Settings:
         self.MAX_DISTANCE = input_settings["max_coverage_distance"]
         self.MAX_FACILITIES = input_settings["max_facilities"]
         self.POP_SIZE = input_settings["ga_settings"]["population_size"]
-        self.P_CROSS = input_settings["ga_settings"]["crossover_probability"]
         self.P_MUTATE = input_settings["ga_settings"]["maximum_generations"]
 
 
 class Location:
-    def __init__(self):
-        self.info = None
-        self.index = None
-        self.demand = None
-        self.capacity = None
+    def __init__(self, index, info, demand, capacity, locations_reachable):
+        self.index = index
+        self.info = info
+        self.demand = demand
+        self.capacity = capacity
+        self.locations_reachable = locations_reachable
         self.is_facility = False
+
 
     def make_facility(self):
         self.is_facility = True
